@@ -13,6 +13,7 @@ def tokenize(text):
             if temp != '':
                 tokens.append(temp)
                 temp = ''
+    #if anything is still inside temp I empty it
     if temp != '':
         tokens.append(temp)
     return tokens
@@ -28,7 +29,7 @@ def build_markov(tokens):
             model[w] = {}
         if nxt not in model[w]:
             model[w][nxt] = 0
-
+    #I raise the weight if the word appears after the previous one multiple times
         model[w][nxt] += 1
 
     return model
@@ -90,3 +91,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
