@@ -3,12 +3,17 @@ import random
 
 def tokenize(text):
     #here I split the text into words / tokens
-    text = text.lower()
+    text = (text.lower().replace("’", "'").replace("–", "-"))
     tokens = []
     temp = ''
-    for char in text:
-        if 'a' <= char <= 'z':
-            temp += char
+
+    for i in range(len(text)):
+        if text[i].isalpha():
+            temp += text[i]
+        elif text[i] in ["'","-"]:
+            if 0 < i < len(text) -1:
+                if text[i+1].isalpha() and text[i-1].isalpha():
+                    temp += text[i]
         else:
             if temp != '':
                 tokens.append(temp)
@@ -91,4 +96,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
